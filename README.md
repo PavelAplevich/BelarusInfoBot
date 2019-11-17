@@ -1,0 +1,2 @@
+# BelarusInfoBot
+Telegram bot
