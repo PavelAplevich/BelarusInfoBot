@@ -6,13 +6,9 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
-
-import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
 
@@ -27,7 +23,7 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    public void sendMsg(SendMessage sendMessage) {
+    public void sendInfo(SendMessage sendMessage) {
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
@@ -35,34 +31,22 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-
-    @Override
-    public void onUpdateReceived(Update update) {
-        if(update.hasMessage()){
-            System.exit(12);
-            CallbackQuery callbackQuery = update.getCallbackQuery();
-            AnswerCallbackQuery answerCallbackQuery = new AnswerCallbackQuery();
-            sendMsg(new SendMessage().setChatId(callbackQuery.getId()).setText(callbackQuery.getMessage().getText()));
-            answerCallbackQuery.setText("Popo");
-            answerCallbackQuery.setCallbackQueryId(callbackQuery.getId());
+    public void sendInfo(AnswerCallbackQuery answerCallbackQuery) {
+        try {
+            execute(answerCallbackQuery);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void onUpdatesReceived(List<Update> updates) {
-            if(updates.get(0).hasCallbackQuery()){
-                System.exit(13);
-                CallbackQuery callbackQuery = updates.get(0).getCallbackQuery();
-                sendMsg(new SendMessage().setChatId(callbackQuery.getId()).setText(callbackQuery.getMessage().getText()));
-                AnswerCallbackQuery answerCallbackQuery = new AnswerCallbackQuery();
-                answerCallbackQuery.setCallbackQueryId(callbackQuery.getId());
-                answerCallbackQuery.setText("Hello!");
-            } else {
-                Message message = updates.get(0).getMessage();
-                Action action = new Action();
-                action.doAction(this, message);
-            }
-
+    public void onUpdateReceived(Update update) {
+        if(update.hasMessage()){
+           new Action().doAction(this, update.getMessage());
+        } else if(update.hasCallbackQuery()){
+            sendInfo(new AnswerCallbackQuery().setCallbackQueryId(update.getCallbackQuery().getId()));
+            new Action().doCallBack(this, update.getCallbackQuery());
+        }
     }
 
     @Override
@@ -72,6 +56,6 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "927060312:AAFL-khTKi00D070vZdhN_mS57sPnM55pP4";
+        return "927060312:AAF6idWicLLvYVPmOILwp8qc7Atn7QJT84w";
     }
 }

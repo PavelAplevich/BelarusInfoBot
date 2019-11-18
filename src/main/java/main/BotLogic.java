@@ -25,7 +25,7 @@ public class BotLogic {
         keyboardFirstRow.add(new KeyboardButton("Гродно"));
         keyboardFirstRow.add(new KeyboardButton("Брест"));
         keyboardSecondRow.add(new KeyboardButton("Гомель"));
-        keyboardSecondRow.add(new KeyboardButton("Могилев"));
+        keyboardSecondRow.add(new KeyboardButton("Могилёв"));
         keyboardSecondRow.add(new KeyboardButton("Витебск"));
 
         keyboardRowList.add(keyboardFirstRow);

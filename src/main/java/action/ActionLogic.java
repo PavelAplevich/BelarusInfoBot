@@ -20,22 +20,22 @@ public class ActionLogic {
                 "выберите необходимый вам город из меню снизу \u2b07");
         sendMessage.setChatId(message.getChatId());
         BotLogic.setCityButtons(sendMessage);
-        bot.sendMsg(sendMessage);
+        bot.sendInfo(sendMessage);
     }
 
     public static void chooseCity(Bot bot, Message message) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-        InlineKeyboardButton inlineKeyboardButtonNews = new InlineKeyboardButton().setText("Новости").setCallbackData("T");
-        InlineKeyboardButton inlineKeyboardButtonWeather = new InlineKeyboardButton().setText("Погода").setUrl("https://www.gismeteo.by/");
-        InlineKeyboardButton inlineKeyboardButtonAfisha = new InlineKeyboardButton().setText("Афиша").setCallbackData("T");
-        InlineKeyboardButton inlineKeyboardButtonCourse = new InlineKeyboardButton().setText("Курсы валют").setCallbackData("T");
+        InlineKeyboardButton inlineKeyboardButtonNews = new InlineKeyboardButton().setText("Новости").setCallbackData("news");
+        InlineKeyboardButton inlineKeyboardButtonWeather = new InlineKeyboardButton().setText("Погода").setCallbackData("weather");
+        InlineKeyboardButton inlineKeyboardButtonAffiche = new InlineKeyboardButton().setText("Афиша").setCallbackData("affiche");
+        InlineKeyboardButton inlineKeyboardButtonCourse = new InlineKeyboardButton().setText("Курсы валют").setCallbackData("course");
         List<InlineKeyboardButton> inlineKeyboardButtonsOne = new ArrayList<>();
         List<InlineKeyboardButton> inlineKeyboardButtonsTwo = new ArrayList<>();
         List<InlineKeyboardButton> inlineKeyboardButtonsThree = new ArrayList<>();
         List<InlineKeyboardButton> inlineKeyboardButtonsFour = new ArrayList<>();
         inlineKeyboardButtonsOne.add(inlineKeyboardButtonNews);
         inlineKeyboardButtonsTwo.add(inlineKeyboardButtonWeather);
-        inlineKeyboardButtonsThree.add(inlineKeyboardButtonAfisha);
+        inlineKeyboardButtonsThree.add(inlineKeyboardButtonAffiche);
         inlineKeyboardButtonsFour.add(inlineKeyboardButtonCourse);
         List<List<InlineKeyboardButton>> rowList= new ArrayList<>();
         rowList.add(inlineKeyboardButtonsOne);
@@ -47,7 +47,7 @@ public class ActionLogic {
         sendMessage.setText("Выберите интересующий вас раздел \u2b07");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         sendMessage.setChatId(message.getChatId());
-        bot.sendMsg(sendMessage);
+        bot.sendInfo(sendMessage);
 
     }
 
@@ -60,7 +60,7 @@ public class ActionLogic {
         sendMessage.setText("Тут необходимо написать раздел помощи");
         sendMessage.setChatId(message.getChatId());
         BotLogic.setHelpButtons(sendMessage);
-        bot.sendMsg(sendMessage);
+        bot.sendInfo(sendMessage);
     }
 
     public static void getCity(Bot bot, Message message) {
@@ -68,13 +68,13 @@ public class ActionLogic {
         sendMessage.setText("Выберите необходимый вам город из меню ниже \u2b07");
         sendMessage.setChatId(message.getChatId());
         BotLogic.setCityButtons(sendMessage);
-        bot.sendMsg(sendMessage);
+        bot.sendInfo(sendMessage);
     }
 
     public static void doNotUnderstandYou(Bot bot, Message message) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText("Я вас не понял \uD83D\uDE14 Повторите...");
         sendMessage.setChatId(message.getChatId());
-        bot.sendMsg(sendMessage);
+        bot.sendInfo(sendMessage);
     }
 }
