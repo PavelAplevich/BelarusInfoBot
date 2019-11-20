@@ -1,6 +1,7 @@
 package main;
 
 import action.Action;
+import action.GetToken;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -56,6 +57,6 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "927060312:AAF6idWicLLvYVPmOILwp8qc7Atn7QJT84w";
+        return GetToken.getBotToken();
     }
 }

@@ -22,7 +22,7 @@ public class WeatherLogic {
     }
 
     private static void doWeather(Bot bot, Long id, String city) throws IOException {
-        URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=b3d530b928f6fd5e3ca6fe9e4c62a193");
+        URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + GetToken.getWeatherToken());
         Scanner in = new Scanner((InputStream) url.getContent());
         String result = "";
         while (in.hasNext()) {
