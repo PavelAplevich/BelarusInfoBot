@@ -48,7 +48,6 @@ public class ActionLogic {
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         sendMessage.setChatId(message.getChatId());
         bot.sendInfo(sendMessage);
-
     }
 
     public static void settings() {

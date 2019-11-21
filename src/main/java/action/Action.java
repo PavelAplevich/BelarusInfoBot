@@ -36,6 +36,8 @@ public class Action {
             case "перейти к выбору города":
                 ActionLogic.getCity(bot, message);
                 break;
+            case "меню":
+                ActionLogic.chooseCity(bot, message);
             case "/settings":
             case "перейти в настройки":
                 ActionLogic.settings();
@@ -45,6 +47,19 @@ public class Action {
                 break;
             case "/start":
                 ActionLogic.sayHello(bot, message);
+                break;
+            case "новости":
+                NewsLogic.makeNews(bot, message.getChatId(), city);
+                break;
+            case "погода":
+                WeatherLogic.makeWeather(bot, message.getChatId(), city);
+                break;
+            case "афиша":
+                AfficheLogic.makeAffiche(bot, message.getChatId(), city);
+                break;
+            case "курс":
+            case "курсы валют":
+                CourseLogic.makeCourse(bot, message.getChatId(), city);
                 break;
             default:
                 ActionLogic.doNotUnderstandYou(bot, message);
@@ -66,6 +81,7 @@ public class Action {
                 break;
             case "course":
                 CourseLogic.makeCourse(bot, id, city);
+                break;
             default:
                 System.out.printf(message);
         }
