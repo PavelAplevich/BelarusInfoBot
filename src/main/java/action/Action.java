@@ -49,7 +49,7 @@ public class Action {
                 ActionLogic.sayHello(bot, message);
                 break;
             case "новости":
-                NewsLogic.makeNews(bot, message.getChatId(), city);
+                NewsLogic.makeNews(bot, message.getChatId(), city, 0);
                 break;
             case "погода":
                 WeatherLogic.makeWeather(bot, message.getChatId(), city);
@@ -72,7 +72,7 @@ public class Action {
         String message = callbackQuery.getData();
         switch (message){
             case "news":
-                NewsLogic.makeNews(bot, id, city);
+                NewsLogic.makeNews(bot, id, city, 0);
                 break;
             case "weather":
                 WeatherLogic.makeWeather(bot, id, city);
@@ -81,6 +81,9 @@ public class Action {
                 break;
             case "course":
                 CourseLogic.makeCourse(bot, id, city);
+                break;
+            case "nextFive":
+                NewsLogic.makeNews(bot, id, city, 5);
                 break;
             default:
                 System.out.printf(message);
