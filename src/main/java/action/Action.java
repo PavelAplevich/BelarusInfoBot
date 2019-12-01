@@ -1,37 +1,24 @@
 package action;
 
+import city.City;
 import main.Bot;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 public class Action {
-    private static String city = "Минск";
 
-    public void doAction(Bot bot, Message message) {
+    private static City city;
+
+    public static void doAction(Bot bot, Message message) {
         switch (message.getText().toLowerCase()){
             case "минск":
-                city = "Минск";
-                ActionLogic.chooseCity(bot, message);
-                break;
             case "гродно":
-                city = "Гродно";
-                ActionLogic.chooseCity(bot, message);
-                break;
             case "гомель":
-                city = "Гомель";
-                ActionLogic.chooseCity(bot, message);
-                break;
             case "брест":
-                city = "Брест";
-                ActionLogic.chooseCity(bot, message);
-                break;
             case "могилёв":
-                city = "Могилёв";
-                ActionLogic.chooseCity(bot, message);
-                break;
             case "витебск":
-                city = "Витебск";
-                ActionLogic.chooseCity(bot, message);
+               city = City.getCity(message.getText());
+               ActionLogic.chooseCity(bot, message);
                 break;
             case "перейти к выбору города":
                 ActionLogic.getCity(bot, message);
@@ -49,17 +36,14 @@ public class Action {
                 ActionLogic.sayHello(bot, message);
                 break;
             case "новости":
-                NewsLogic.makeNews(bot, message.getChatId(), city, 0);
+                NewsLogic.makeNews(bot, message.getChatId(), city.getName(), 0);
                 break;
             case "погода":
-                WeatherLogic.makeWeather(bot, message.getChatId(), city);
-                break;
-            case "афиша":
-                AfficheLogic.makeAffiche(bot, message.getChatId(), city);
+                WeatherLogic.makeWeather(bot, message.getChatId(), city.getName());
                 break;
             case "курс":
             case "курсы валют":
-                CourseLogic.makeCourse(bot, message.getChatId(), city);
+                CourseLogic.makeCourse(bot, message.getChatId(), city.getName());
                 break;
             default:
                 ActionLogic.doNotUnderstandYou(bot, message);
@@ -67,23 +51,21 @@ public class Action {
         }
     }
 
-    public void doCallBack(Bot bot, CallbackQuery callbackQuery){
+    public static void doCallBack(Bot bot, CallbackQuery callbackQuery){
         Long id = callbackQuery.getMessage().getChatId();
         String message = callbackQuery.getData();
         switch (message){
             case "news":
-                NewsLogic.makeNews(bot, id, city, 0);
+                city.getNews(bot, id);
                 break;
             case "weather":
-                WeatherLogic.makeWeather(bot, id, city);
-            case "affiche":
-                AfficheLogic.makeAffiche(bot, id, city);
+                city.getWeather(bot, id);
                 break;
             case "course":
-                CourseLogic.makeCourse(bot, id, city);
+                city.getCourse(bot, id);
                 break;
             case "nextFive":
-                NewsLogic.makeNews(bot, id, city, 5);
+                NewsLogic.makeNews(bot, id, city.getName(), 5);
                 break;
             default:
                 System.out.printf(message);
