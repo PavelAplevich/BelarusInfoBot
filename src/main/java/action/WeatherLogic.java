@@ -1,7 +1,7 @@
 package action;
 
 import main.Bot;
-import main.BotLogic;
+import main.BotButtons;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -52,11 +52,11 @@ public class WeatherLogic {
                 "\uD83C\uDDE7\uD83C\uDDFE" + " Сегодня\n" + getClockIcon() + " " +
                 new Date().toLocaleString().replaceAll(",","") +"\n"
                         + getCityIcon().toUpperCase() + " " +
-                "Город: " + name + "\n" +
+                name + "\n" +
                 "\uD83C\uDF21 Температура: " + temp + " \u2103" + "\n" +
                 "\uD83D\uDCA7 Влажность: " + humidity + "%" + "\n" +
-                 getMain(innerMain) + "\n").setChatId(id);
-        BotLogic.setBackButtons(sendMessage);
+                 getWeatherIcon(innerMain) + "\n").setChatId(id);
+        BotButtons.setBackButtons(sendMessage);
         bot.sendInfo(sendMessage);
     }
 
@@ -101,12 +101,14 @@ public class WeatherLogic {
         }
     }
 
-    private static String getMain(String main){
+    private static String getWeatherIcon(String main){
         switch (main){
             case "Clouds":
                 return "\u2601 Облачно";
             case "Mist":
-                return "Туман";
+                return "\uD83C\uDF01 Туман";
+            case "Snow":
+                return "\u2744 Снег";
             default:
                 return main;
         }

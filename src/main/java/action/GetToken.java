@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class GetToken {
-    final private static File file = new File("/Users/dariaapril/Desktop/НЕ УДАЛЯТЬ! .txt");
+    final private static File file = new File("/home/pavlik/Рабочий стол/НЕ УДАЛЯТЬ! .txt");
 
     public static String getBotToken(){
         FileInputStream fileInputStream = null;

@@ -1,6 +1,7 @@
 package main;
 
 import action.Action;
+import action.ActionLogic;
 import action.GetToken;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -46,7 +47,11 @@ public class Bot extends TelegramLongPollingBot {
            Action.doAction(this, update.getMessage());
         } else if(update.hasCallbackQuery()){
             sendInfo(new AnswerCallbackQuery().setCallbackQueryId(update.getCallbackQuery().getId()));
-            Action.doCallBack(this, update.getCallbackQuery());
+            try{
+                Action.doCallBack(this, update.getCallbackQuery());
+            } catch (NullPointerException e){
+                ActionLogic.getCity(this,  update.getCallbackQuery().getMessage());
+            }
         }
     }
 

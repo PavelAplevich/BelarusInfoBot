@@ -34,10 +34,8 @@ public class NewsLogic {
             DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = db.parse(new ByteArrayInputStream(news.getBytes()));
             doc.normalize();
-
             InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
             List<List<InlineKeyboardButton>> rowList= new ArrayList<>();
-
             NodeList root = doc.getElementsByTagName("item");
             for(int i = count; i < count + 5 && i < root.getLength(); i++){
                 Element element = (Element) root.item(i);
@@ -57,7 +55,7 @@ public class NewsLogic {
             buttons.add(button);
             rowList.add(buttons);
             inlineKeyboardMarkup.setKeyboard(rowList);
-            bot.sendInfo(new SendMessage().setText("<b>\uD83D\uDCFA Последние новости. " + city + ":</b>\n").setChatId(id)
+            bot.sendInfo(new SendMessage().setText("<b>\uD83D\uDCFA     Последние новости. " + city + ":    \uD83D\uDCFA</b>\n").setChatId(id)
                     .setReplyMarkup(inlineKeyboardMarkup).setParseMode("HTML"));
 
         } catch (IOException | SAXException | ParserConfigurationException e) {

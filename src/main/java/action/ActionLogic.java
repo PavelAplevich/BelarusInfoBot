@@ -1,7 +1,7 @@
 package action;
 
 import main.Bot;
-import main.BotLogic;
+import main.BotButtons;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -19,7 +19,7 @@ public class ActionLogic {
                 "Используйте команду /settings для настройки бота.\n" +
                 "выберите необходимый вам город из меню снизу \u2b07");
         sendMessage.setChatId(message.getChatId());
-        BotLogic.setCityButtons(sendMessage);
+        BotButtons.setCityButtons(sendMessage);
         bot.sendInfo(sendMessage);
     }
 
@@ -54,7 +54,7 @@ public class ActionLogic {
         //// TODO: 11/17/19 Написать раздел помощи.
         sendMessage.setText("Тут необходимо написать раздел помощи");
         sendMessage.setChatId(message.getChatId());
-        BotLogic.setHelpButtons(sendMessage);
+        BotButtons.setHelpButtons(sendMessage);
         bot.sendInfo(sendMessage);
     }
 
@@ -62,7 +62,7 @@ public class ActionLogic {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText("Выберите необходимый вам город из меню ниже \u2b07");
         sendMessage.setChatId(message.getChatId());
-        BotLogic.setCityButtons(sendMessage);
+        BotButtons.setCityButtons(sendMessage);
         bot.sendInfo(sendMessage);
     }
 

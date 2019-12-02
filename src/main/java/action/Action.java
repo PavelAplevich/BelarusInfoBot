@@ -10,6 +10,9 @@ public class Action {
     private static City city;
 
     public static void doAction(Bot bot, Message message) {
+        if(message.getText().toLowerCase().equals("могилев")){
+
+        }
         switch (message.getText().toLowerCase()){
             case "минск":
             case "гродно":

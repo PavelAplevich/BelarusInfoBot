@@ -1,7 +1,7 @@
 package action;
 
 import main.Bot;
-import main.BotLogic;
+import main.BotButtons;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class CourseLogic {
             Scanner scanner = new Scanner((InputStream)(url.getContent()));
             String message = "Курс валют по данным НБРБ \uD83C\uDDE7\uD83C\uDDFE:\n" + getMessage(scanner);
             SendMessage sendMessage = new SendMessage().setText(message).setChatId(id);
-            BotLogic.setBackButtons(sendMessage);
+            BotButtons.setBackButtons(sendMessage);
             bot.sendInfo(sendMessage);
         } catch (IOException e) {
             e.printStackTrace();
