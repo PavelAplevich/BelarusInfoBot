@@ -1,7 +1,9 @@
-package action;
+package logics;
 
 import main.Bot;
+import main.BotButtons;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.w3c.dom.Document;
@@ -9,10 +11,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -22,6 +26,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class NewsLogic {
+    private static File file = new File("/Users/dariaapril/IDEA projects/BelarusInfoBot/src/main/resources/MyPicture.jpg");
+    private static int newsCounter = 0;
 
     public static void makeNews(Bot bot, Long id, String city, int count) {
         String news = "";
@@ -37,12 +43,12 @@ public class NewsLogic {
             InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
             List<List<InlineKeyboardButton>> rowList= new ArrayList<>();
             NodeList root = doc.getElementsByTagName("item");
-            for(int i = count; i < count + 5 && i < root.getLength(); i++){
+            for(int i = newsCounter; i < newsCounter + 5 && i < root.getLength(); i++){
                 Element element = (Element) root.item(i);
                 Node title = element.getElementsByTagName("title").item(0);
                 Node link= element.getElementsByTagName("link").item(0);
                 InlineKeyboardButton x = new InlineKeyboardButton()
-                        .setText("\uD83D\uDC41\u200D\uD83D\uDDE8 " + title.getTextContent())
+                        .setText(title.getTextContent())
                         .setUrl(link.getTextContent());
                 List<InlineKeyboardButton> inlineKeyboardButtons = new ArrayList<>();
                 inlineKeyboardButtons.add(x);
@@ -55,9 +61,14 @@ public class NewsLogic {
             buttons.add(button);
             rowList.add(buttons);
             inlineKeyboardMarkup.setKeyboard(rowList);
-            bot.sendInfo(new SendMessage().setText("<b>\uD83D\uDCFA     Последние новости. " + city + ":    \uD83D\uDCFA</b>\n").setChatId(id)
-                    .setReplyMarkup(inlineKeyboardMarkup).setParseMode("HTML"));
-
+            bot.sendInfo(new SendPhoto().setPhoto(file).setChatId(id).setReplyMarkup(BotButtons.getMenuButton()));
+            bot.sendInfo(new SendMessage().setText("Последние новости. " + city + ":\n").setChatId(id)
+                    .setReplyMarkup(inlineKeyboardMarkup));
+            if(newsCounter == 0 || newsCounter == 5 || newsCounter == 10){
+                newsCounter +=5;
+            } else {
+                newsCounter =0;
+            }
         } catch (IOException | SAXException | ParserConfigurationException e) {
             e.printStackTrace();
         }

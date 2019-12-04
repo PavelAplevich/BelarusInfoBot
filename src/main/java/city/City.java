@@ -1,9 +1,12 @@
 package city;
 
-import action.CourseLogic;
-import action.NewsLogic;
-import action.WeatherLogic;
+import logics.CourseLogic;
+import logics.NewsLogic;
+import logics.WeatherLogic;
 import main.Bot;
+import main.BotButtons;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
 
 public class City implements CityLogic {
 
@@ -12,21 +15,30 @@ public class City implements CityLogic {
 
     public static City getCity(String name){
          switch (name.toLowerCase()){
-             case "минск":
+             case "minsk":
                  return new Minsk();
-             case "гродно":
+             case "grodno":
                  return new Grodno();
-             case "гомель":
+             case "gomel":
                  return  new Gomel();
-             case "брест":
+             case "brest":
                  return new Brest();
-             case "могилёв":
+             case "mogilev":
                  return new Mogilev();
-             case "витебск":
+             case "vitebsk":
                  return new Vitebsk();
              default:
                  return  new Minsk();
          }
+    }
+
+    public void chooseCity(Bot bot, Message message) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setText("Выберите интересующий вас раздел\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\u2b07\t\t\t\t\t\t\t\t\t\u2b07");
+        sendMessage.setReplyMarkup(BotButtons.getInlineKeyboard());
+        sendMessage.setChatId(message.getChatId());
+        bot.sendInfo(sendMessage);
     }
 
     @Override

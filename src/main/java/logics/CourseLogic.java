@@ -1,4 +1,4 @@
-package action;
+package logics;
 
 import main.Bot;
 import main.BotButtons;
@@ -16,8 +16,8 @@ public class CourseLogic {
             URL url = new URL("http://www.nbrb.by/api/exrates/rates?periodicity=0");
             Scanner scanner = new Scanner((InputStream)(url.getContent()));
             String message = "Курс валют по данным НБРБ \uD83C\uDDE7\uD83C\uDDFE:\n" + getMessage(scanner);
-            SendMessage sendMessage = new SendMessage().setText(message).setChatId(id);
-            BotButtons.setBackButtons(sendMessage);
+            SendMessage sendMessage = new SendMessage().setText("<b>" + message + "</b>").setChatId(id).setParseMode("HTML");
+            BotButtons.setMenuButton(sendMessage);
             bot.sendInfo(sendMessage);
         } catch (IOException e) {
             e.printStackTrace();
@@ -35,7 +35,7 @@ public class CourseLogic {
             }
             String rate = line.substring(line.indexOf("\"Cur_OfficialRate\":") + 19, line.indexOf("}"));
             rate = rate.substring(0, 4);
-            result = result.concat("" + scale + " " + name + " = " + rate + " руб.\n");
+            result = result.concat("" + scale + " " + name + " = " + rate + " Br\n");
         }
         return result;
     }
