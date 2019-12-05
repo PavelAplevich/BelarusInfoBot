@@ -16,8 +16,8 @@ public class CourseLogic {
             URL url = new URL("http://www.nbrb.by/api/exrates/rates?periodicity=0");
             Scanner scanner = new Scanner((InputStream)(url.getContent()));
             String message = "Курс валют по данным НБРБ \uD83C\uDDE7\uD83C\uDDFE:\n" + getMessage(scanner);
-            SendMessage sendMessage = new SendMessage().setText("<b>" + message + "</b>").setChatId(id).setParseMode("HTML");
-            BotButtons.setMenuButton(sendMessage);
+            SendMessage sendMessage = new SendMessage().setText("<b>" + message + "</b>").setChatId(id).
+                    setParseMode("HTML").setReplyMarkup(BotButtons.getMenuButton());
             bot.sendInfo(sendMessage);
         } catch (IOException e) {
             e.printStackTrace();

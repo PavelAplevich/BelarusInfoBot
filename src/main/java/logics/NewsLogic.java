@@ -56,7 +56,7 @@ public class NewsLogic {
             }
             InlineKeyboardButton button = new InlineKeyboardButton()
                     .setText("⬇ Показать следующие пять новостей ⬇")
-                    .setCallbackData("nextFive");
+                    .setCallbackData("news");
             List<InlineKeyboardButton> buttons = new ArrayList<>();
             buttons.add(button);
             rowList.add(buttons);

@@ -51,8 +51,7 @@ public class WeatherLogic {
                 name + "\n" +
                 "\uD83C\uDF21 Температура: " + temp + " \u2103" + "\n" +
                 "\uD83D\uDCA7 Влажность: " + humidity + "%" + "\n" +
-                 getWeatherIcon(innerMain) + "\n").setChatId(id);
-        BotButtons.setMenuButton(sendMessage);
+                 getWeatherIcon(innerMain) + "\n").setChatId(id).setReplyMarkup(BotButtons.getMenuButton());
         bot.sendInfo(sendMessage);
     }
 }

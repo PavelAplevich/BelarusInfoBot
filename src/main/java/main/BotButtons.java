@@ -75,19 +75,6 @@ public class BotButtons {
 
     }
 
-    public static void setMenuButton(SendMessage sendMessage) {
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        sendMessage.setReplyMarkup(replyKeyboardMarkup);
-        replyKeyboardMarkup.setSelective(true);
-        replyKeyboardMarkup.setResizeKeyboard(true);
-        replyKeyboardMarkup.setOneTimeKeyboard(false);
-        List<KeyboardRow> keyboardRowList = new ArrayList<>();
-        KeyboardRow keyboardFirstRow = new KeyboardRow();
-        keyboardFirstRow.add(new KeyboardButton("Меню"));
-        keyboardRowList.add(keyboardFirstRow);
-        replyKeyboardMarkup.setKeyboard(keyboardRowList);
-    }
-
     public static ReplyKeyboardMarkup getMenuButton() {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         replyKeyboardMarkup.setSelective(true);

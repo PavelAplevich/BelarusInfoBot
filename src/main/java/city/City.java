@@ -35,7 +35,7 @@ public class City implements CityLogic {
     public void chooseCity(Bot bot, Message message) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText("Выберите интересующий вас раздел\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\u2b07\t\t\t\t\t\t\t\t\t\u2b07");
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\u2b07\t\t\t\t\t\t\t\t\t\t\u2b07");
         sendMessage.setReplyMarkup(BotButtons.getInlineKeyboard());
         sendMessage.setChatId(message.getChatId());
         bot.sendInfo(sendMessage);
