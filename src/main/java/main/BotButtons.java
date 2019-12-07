@@ -12,7 +12,7 @@ import java.util.List;
 
 public class BotButtons {
 
-    public static InlineKeyboardMarkup getInlineKeyboard(){
+    public static InlineKeyboardMarkup getInlineKeyboard() {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         InlineKeyboardButton inlineKeyboardButtonNews = new InlineKeyboardButton().setText("Новости").setCallbackData("news");
         InlineKeyboardButton inlineKeyboardButtonWeather = new InlineKeyboardButton().setText("Погода").setCallbackData("weather");
@@ -26,7 +26,7 @@ public class BotButtons {
         inlineKeyboardButtonsTwo.add(inlineKeyboardButtonWeather);
         inlineKeyboardButtonsThree.add(inlineKeyboardButtonCourse);
         inlineKeyboardButtonsFour.add(inlineKeyboardButtonDogs);
-        List<List<InlineKeyboardButton>> rowList= new ArrayList<>();
+        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
         rowList.add(inlineKeyboardButtonsOne);
         rowList.add(inlineKeyboardButtonsTwo);
         rowList.add(inlineKeyboardButtonsThree);
@@ -58,7 +58,7 @@ public class BotButtons {
         replyKeyboardMarkup.setKeyboard(keyboardRowList);
     }
 
-    public static void setHelpButtons(SendMessage sendMessage){
+    public static void setHelpButtons(SendMessage sendMessage) {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
         replyKeyboardMarkup.setSelective(true);

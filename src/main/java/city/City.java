@@ -10,29 +10,29 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 
 public class City implements CityLogic {
 
-     protected City(){
+    protected City() {
     }
 
-    public static City getCity(String name){
-         switch (name.toLowerCase()){
-             case "minsk":
-                 return new Minsk();
-             case "grodno":
-                 return new Grodno();
-             case "gomel":
-                 return  new Gomel();
-             case "brest":
-                 return new Brest();
-             case "mogilev":
-                 return new Mogilev();
-             case "vitebsk":
-                 return new Vitebsk();
-             default:
-                 return  new Minsk();
-         }
+    public static City getCity(String name) {
+        switch (name.toLowerCase()) {
+            case "minsk":
+                return new Minsk();
+            case "grodno":
+                return new Grodno();
+            case "gomel":
+                return new Gomel();
+            case "brest":
+                return new Brest();
+            case "mogilev":
+                return new Mogilev();
+            case "vitebsk":
+                return new Vitebsk();
+            default:
+                return new Minsk();
+        }
     }
 
-    public void chooseCity(Bot bot, Message message) {
+    public void chooseChoice(Bot bot, Message message) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setText("Выберите интересующий вас раздел\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\u2b07\t\t\t\t\t\t\t\t\t\t\u2b07");

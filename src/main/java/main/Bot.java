@@ -51,18 +51,18 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        if(update.hasMessage()){
+        if (update.hasMessage()) {
             try {
                 Action.doAction(this, update.getMessage());
-            } catch (NullPointerException e){
-                ActionLogic.getCity(this,  update.getMessage());
+            } catch (NullPointerException e) {
+                ActionLogic.getCity(this, update.getMessage());
             }
-        } else if(update.hasCallbackQuery()){
+        } else if (update.hasCallbackQuery()) {
             sendInfo(new AnswerCallbackQuery().setCallbackQueryId(update.getCallbackQuery().getId()));
-            try{
+            try {
                 Action.doCallBack(this, update.getCallbackQuery());
-            } catch (NullPointerException e){
-                ActionLogic.getCity(this,  update.getCallbackQuery().getMessage());
+            } catch (NullPointerException e) {
+                ActionLogic.getCity(this, update.getCallbackQuery().getMessage());
             }
         }
     }

@@ -2,7 +2,7 @@ package logics;
 
 public class InputLogic {
     public static String getCityName(String name) {
-        switch (name){
+        switch (name) {
             case "минск":
             case "minsk":
                 return "minsk";

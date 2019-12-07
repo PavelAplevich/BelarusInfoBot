@@ -5,6 +5,7 @@ import main.BotButtons;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -46,12 +47,12 @@ public class WeatherLogic {
 
         SendMessage sendMessage = new SendMessage().setText(
                 "\uD83C\uDDE7\uD83C\uDDFE" + " Сегодня\n" + getClockIcon() + " " +
-                new Date().toLocaleString().replaceAll(",","") +"\n"
+                        new Date().toLocaleString().replaceAll(",", "") + "\n"
                         + getCityIcon().toUpperCase() + " " +
-                name + "\n" +
-                "\uD83C\uDF21 Температура: " + temp + " \u2103" + "\n" +
-                "\uD83D\uDCA7 Влажность: " + humidity + "%" + "\n" +
-                 getWeatherIcon(innerMain) + "\n").setChatId(id).setReplyMarkup(BotButtons.getMenuButton());
+                        name + "\n" +
+                        "\uD83C\uDF21 Температура: " + temp + " \u2103" + "\n" +
+                        "\uD83D\uDCA7 Влажность: " + humidity + "%" + "\n" +
+                        getWeatherIcon(innerMain) + "\n").setChatId(id).setReplyMarkup(BotButtons.getMenuButton());
         bot.sendInfo(sendMessage);
     }
 }

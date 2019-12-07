@@ -11,13 +11,13 @@ public class Action {
 
     public static void doAction(Bot bot, Message message) {
         String isCity = InputLogic.getCityName(message.getText().toLowerCase());
-        if(isCity.equals("unknown")){
-            switch (message.getText().toLowerCase()){
+        if (isCity.equals("unknown")) {
+            switch (message.getText().toLowerCase()) {
                 case "перейти к выбору города":
                     ActionLogic.getCity(bot, message);
                     break;
                 case "меню":
-                    city.chooseCity(bot, message);
+                    city.chooseChoice(bot, message);
                 case "/settings":
                 case "перейти в настройки":
                     ActionLogic.settings();
@@ -42,7 +42,7 @@ public class Action {
                     ActionLogic.doNotUnderstandYou(bot, message);
             }
         } else {
-            switch (isCity){
+            switch (isCity) {
                 case "minsk":
                 case "grodno":
                 case "gomel":
@@ -50,16 +50,16 @@ public class Action {
                 case "mogilev":
                 case "vitebsk":
                     city = City.getCity(isCity);
-                    city.chooseCity(bot, message);
+                    city.chooseChoice(bot, message);
                     break;
             }
         }
     }
 
-    public static void doCallBack(Bot bot, CallbackQuery callbackQuery){
+    public static void doCallBack(Bot bot, CallbackQuery callbackQuery) {
         Long id = callbackQuery.getMessage().getChatId();
         String message = callbackQuery.getData();
-        switch (message){
+        switch (message) {
             case "news":
                 city.getNews(bot, id);
                 break;

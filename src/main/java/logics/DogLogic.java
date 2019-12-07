@@ -14,14 +14,14 @@ import java.util.Scanner;
 
 public class DogLogic {
 
-   private static File file = new File("/Users/dariaapril/IDEA projects/BelarusInfoBot/src/main/resources/BufferFile");
+    private static File file = new File("/Users/dariaapril/IDEA projects/BelarusInfoBot/src/main/resources/BufferFile");
 
     public static void makeDog(Bot bot, Long chatId) {
         try {
             URL url = new URL("https://dog.ceo/api/breeds/image/random");
             Scanner scanner = new Scanner((InputStream) url.getContent());
             String result = "";
-            while(scanner.hasNext()){
+            while (scanner.hasNext()) {
                 result = result.concat(scanner.nextLine());
             }
             result = result.substring(result.indexOf("{\"message\":\"") + 12, result.indexOf("\",\"status\":"));

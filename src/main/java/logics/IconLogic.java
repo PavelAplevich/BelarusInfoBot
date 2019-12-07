@@ -7,20 +7,20 @@ public class IconLogic {
     final private static int time = GregorianCalendar.getInstance().get(Calendar.HOUR);
     final private static int time24 = GregorianCalendar.getInstance().get(Calendar.HOUR_OF_DAY);
 
-    public static String getCityIcon(){
-        if(time24 >= 6 && time24 < 11){
+    public static String getCityIcon() {
+        if (time24 >= 6 && time24 < 11) {
             return "\uD83C\uDF07";
-        } else if(time24 >= 11 && time24 < 18){
+        } else if (time24 >= 11 && time24 < 18) {
             return "\uD83C\uDF06";
-        } else if(time24 >= 18 && time24 < 22){
+        } else if (time24 >= 18 && time24 < 22) {
             return "\uD83C\uDFD9";
         } else {
             return "\uD83C\uDF03";
         }
     }
 
-    public static String getClockIcon(){
-        switch (time){
+    public static String getClockIcon() {
+        switch (time) {
             case 1:
                 return "\uD83D\uDD50";
             case 2:
@@ -48,8 +48,8 @@ public class IconLogic {
         }
     }
 
-    public static String getWeatherIcon(String main){
-        switch (main){
+    public static String getWeatherIcon(String main) {
+        switch (main) {
             case "Clouds":
                 return "\u2601 Облачно";
             case "Mist":

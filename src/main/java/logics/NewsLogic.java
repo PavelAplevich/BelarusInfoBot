@@ -34,19 +34,19 @@ public class NewsLogic {
         try {
             URL url = makeUrl(city);
             Scanner scanner = new Scanner((InputStream) url.getContent());
-            while (scanner.hasNextLine()){
+            while (scanner.hasNextLine()) {
                 news = news.concat(scanner.nextLine());
             }
             DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document doc = db.parse(new ByteArrayInputStream(news.getBytes()));
             doc.normalize();
             InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-            List<List<InlineKeyboardButton>> rowList= new ArrayList<>();
+            List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
             NodeList root = doc.getElementsByTagName("item");
-            for(int i = newsCounter; i < newsCounter + 5 && i < root.getLength(); i++){
+            for (int i = newsCounter; i < newsCounter + 5 && i < root.getLength(); i++) {
                 Element element = (Element) root.item(i);
                 Node title = element.getElementsByTagName("title").item(0);
-                Node link= element.getElementsByTagName("link").item(0);
+                Node link = element.getElementsByTagName("link").item(0);
                 InlineKeyboardButton x = new InlineKeyboardButton()
                         .setText(title.getTextContent())
                         .setUrl(link.getTextContent());
@@ -64,10 +64,10 @@ public class NewsLogic {
             bot.sendInfo(new SendPhoto().setPhoto(file).setChatId(id).setReplyMarkup(BotButtons.getMenuButton()));
             bot.sendInfo(new SendMessage().setText("Последние новости. " + city + ":\n").setChatId(id)
                     .setReplyMarkup(inlineKeyboardMarkup));
-            if(newsCounter == 0 || newsCounter == 5 || newsCounter == 10){
-                newsCounter +=5;
+            if (newsCounter == 0 || newsCounter == 5 || newsCounter == 10) {
+                newsCounter += 5;
             } else {
-                newsCounter =0;
+                newsCounter = 0;
             }
         } catch (IOException | SAXException | ParserConfigurationException e) {
             e.printStackTrace();
@@ -76,7 +76,7 @@ public class NewsLogic {
     }
 
     private static URL makeUrl(String city) throws MalformedURLException {
-        switch (city.toLowerCase()){
+        switch (city.toLowerCase()) {
             case "минск":
                 return new URL("https://news.tut.by/rss/geonews/minsk.rss");
             case "гродно":
@@ -84,7 +84,7 @@ public class NewsLogic {
             case "гомель":
                 return new URL("https://news.tut.by/rss/geonews/gomel.rss");
             case "брест":
-                return  new URL("https://news.tut.by/rss/geonews/brest.rss");
+                return new URL("https://news.tut.by/rss/geonews/brest.rss");
             case "могилёв":
                 return new URL("https://news.tut.by/rss/geonews/mogilev.rss");
             case "витебск":
